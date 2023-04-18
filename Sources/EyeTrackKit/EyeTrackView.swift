@@ -106,6 +106,7 @@ public struct EyeTrackView: UIViewRepresentable {
             guard let faceAnchor = anchor as? ARFaceAnchor else {
                 return
             }
+            print("renderer")
             updateAnchor(withFaceAnchor: faceAnchor)
         }
 
@@ -122,11 +123,17 @@ public struct EyeTrackView: UIViewRepresentable {
             guard let faceAnchor = anchor as? ARFaceAnchor else {
                 return
             }
+            print("renderer2")
+
             updateAnchor(withFaceAnchor: faceAnchor)
         }
 
         public func updateAnchor(withFaceAnchor anchor: ARFaceAnchor) {
+            print("renderer3")
+
             DispatchQueue.main.async {
+                print("renderer4")
+
                 self.eyeTrack.update(anchor: anchor)
             }
         }
