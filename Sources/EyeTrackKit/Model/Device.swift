@@ -13,8 +13,7 @@ import ARKit
 public enum DeviceType: String, CaseIterable {
     case iPad = "iPad"
     case iPadLandscape = "iPad Landscape"
-    case iPhone11 = "iPhone11"
-    case iPhone11Pro = "iPhone11Pro"
+    case iPhone = "iPhone"
 }
 
 // デバイス情報保持クラス
@@ -48,11 +47,7 @@ public class Device {
     public init(type: DeviceType) {
         self.type = type
         switch type {
-        case DeviceType.iPhone11:
-            self.screenSize = CGSize(width: 0.0757, height: 0.1509)
-            self.screenPointSize = CGSize(width: 414, height: 896)
-            self.compensation = CGPoint(x: 0, y: 414)
-        case DeviceType.iPhone11Pro:
+        case DeviceType.iPhone:
             self.screenSize = CGSize(width: 0.0714, height: 0.1440)
             self.screenPointSize = CGSize(width: 375, height: 812)
             self.compensation = CGPoint(x: 0, y: 375)
