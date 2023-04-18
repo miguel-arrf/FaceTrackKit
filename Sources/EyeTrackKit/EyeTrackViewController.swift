@@ -9,13 +9,11 @@ import UIKit
 import SceneKit
 import ARKit
 import WebKit
-import ARVideoKit
 
 open class EyeTrackViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     public var sceneView: ARSCNView!
     public var eyeTrack: EyeTrack!
-    public var recorder: RecordAR?
     public var isHidden: Bool?
     
     public func initialize(isHidden: Bool = true, eyeTrack: EyeTrack) {
@@ -36,7 +34,6 @@ open class EyeTrackViewController: UIViewController, ARSCNViewDelegate, ARSessio
         // Register EyeTrack module
         self.eyeTrack.registerSceneView(sceneView: sceneView)
         // Setting recorder
-        self.recorder = RecordAR(ARSceneKit: sceneView)
     }
     
     public func hide() -> Void {
@@ -49,12 +46,10 @@ open class EyeTrackViewController: UIViewController, ARSCNViewDelegate, ARSessio
 
     // Start to record SceneView content
     public func startRecord() {
-        recorder?.record()
     }
 
     // Stop to record and Save the recorded video
     public func stopRecord() {
-        recorder?.stopAndExport()
     }
 
     open override func viewDidLoad() {
@@ -68,7 +63,6 @@ open class EyeTrackViewController: UIViewController, ARSCNViewDelegate, ARSessio
         configuration.isLightEstimationEnabled = true
 
         // Setting recorder
-        self.recorder?.prepare(configuration)
 
         // Run the view's session
         self.sceneView.session.run(configuration, options: [.resetTracking, .removeExistingAnchors])
@@ -77,7 +71,6 @@ open class EyeTrackViewController: UIViewController, ARSCNViewDelegate, ARSessio
     open override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // Pause recording
-        recorder?.rest()
         // Pause the view's session
         sceneView.session.pause()
 

@@ -35,6 +35,8 @@ public class Face {
         // 瞬き情報更新
         self.leftEye.blink = anchor.blendShapes[.eyeBlinkLeft]?.floatValue ?? 0.0
         self.rightEye.blink = anchor.blendShapes[.eyeBlinkRight]?.floatValue ?? 0.0
+        
+        
     }
 
     // デバイスとの距離を取得
